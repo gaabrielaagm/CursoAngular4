@@ -1,0 +1,51 @@
+ 
+<!-- COMPONENTE PLANTILLA -->
+
+<h3>{{titulo}}</h3>
+
+<!-- IF, ELSE NORMAL (SIN NGTEMPLATE-->
+<!--
+<div *ngIf="administrador">
+    <strong style="background: yellow;">Eres el administrador de la webapp</strong>
+</div>
+
+<div *ngIf="!administrador">
+    <strong style="background: red; color: white;">No eres el administrador de la webapp</strong>
+</div>
+
+<br/>
+<button (click)="cambiarAdmin()">Cambiar</button>
+-->
+
+
+<!-- NgTemplate IF, ELSE -->
+<!--
+<div *ngIf="administrador; else noAdmin">
+    <button (click)="cambiar(false)">Cambiar</button>
+    <strong style="background: yellow;">Eres el administrador de la webapp</strong>
+</div>
+
+<ng-template #noAdmin>
+    <button (click)="cambiar(true)">Cambiar</button>
+    <strong style="background: red; color: white;">No eres el administrador de la webapp</strong>
+</ng-template>
+-->
+
+<!-- NgTemplate IF,ELSE Y THEN -->
+
+<div *ngIf="administrador; then admin else noAdmin"></div>
+
+
+<!-- NgTemplates | Plantillas con sus respectivos nombres nombres -->
+
+<ng-template #admin>
+    <button (click)="cambiar(false)">Cambiar</button>
+    <strong style="background: yellow;">Eres el administrador de la webapp</strong>
+</ng-template>
+
+<ng-template #noAdmin>
+    <button (click)="cambiar(true)">Cambiar</button>
+    <strong style="background: red; color: white;">No eres el administrador de la webapp</strong>
+</ng-template>
+
+

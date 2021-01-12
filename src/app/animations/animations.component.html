@@ -1,0 +1,5 @@
+<a class="boton_activo btn btn-success"
+    [@marcar]='status' (click)="cambiarEstado(status)">
+    <span *ngIf="status == 'active'">Boton activado</span>
+    <span *ngIf="status == 'inactive'">Boton inactivo</span>
+</a>

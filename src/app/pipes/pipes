@@ -1,0 +1,36 @@
+PIPES (tuberías o filtros)
+
+Son pequeñas funciones que nos sirven para realizar una tarea en nuestra vista o plantilla de angular 
+Por ejemplo: Transformar fecha, convertir caracter a minuscula o mayuscula o cualquier otro tipo 
+de accion que queramos hacer para convertir cualquier texto o dato a algo o procesar algun tipo de info. 
+en nuestra vista (incluso crear pipes personalizados). 
+
+(SE ENCUENTRAN EN home.component.html)
+
+1)Pipe fecha:
+    {{fecha|date:'fullDate'}}
+    {{fecha|date:'dd/MM/yy'}}
+    {{fecha|date:'dd/MM/yyyy'}}
+
+2)Pipe minusculas y mayusculas 
+    {{nombre | uppercase}}
+    {{nombre | lowercase}}
+
+3)Pipe personalizado (pipes/conversor.pipe.ts)
+    a)Creamos una carpeta de pipes
+    b)Se crea el archivo con el nombre
+    c)En el archivo se importa:
+        import {Pipe, PipeTransform} from '@angular/core';
+    d)En el decorador se agrega el nombre del pipe
+        @Pipe({ name: 'conversor' })
+    e)Se agrega un nombre de la clase 
+    f)En la clase se implementa:
+        implements PipeTransform
+    g)Se usa el método transform(...) {...}
+    h)Se agrega en app.module.ts
+        1)importarlo
+        2)agregarlo en declarations
+    i)Y ahora se puede usar (home.component.html)
+        {{5 | conversor: 7}}
+
+

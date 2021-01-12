@@ -1,0 +1,69 @@
+<h1>Componente de coches</h1>
+<style>
+    div{
+        float: left;
+    }
+
+    .listado{
+        margin-left: 30px;
+    }
+
+    form{
+        width: 200px;
+    }
+
+    input[type="text"], span{
+        display: block;
+        width: 100%;
+    }
+</style>
+<!-- Formulario de Angular -->
+<div>
+    <form #formCoche="ngForm" (ngSubmit)="onSubmit(); formCoche.reset()">
+        <p>
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="coche.nombre" 
+            required="required" pattern="[a-zA-Z]+">
+            <!-- Si el nombre ha sido tocado y nombre no es valido-->
+            <span *ngIf="nombre.touched && !nombre.valid">
+                El nombre del coche es incorrecto
+            </span>
+        </p>
+        <p>
+            <label for="caballaje">Caballaje: </label>
+            <input type="text" name="caballaje" #caballaje="ngModel" [(ngModel)]="coche.caballaje" 
+            required="required" pattern="[0-9]+">
+            <span *ngIf="caballaje.touched && !caballaje.valid">
+                El caballaje es incorrecto
+            </span>
+        </p>
+        <p>
+            <label for="color">Color: </label>
+            <input type="text" name="color" #color="ngModel" [(ngModel)]="coche.color" 
+            required="required" pattern="[a-zA-z#]+">
+            <span *ngIf="color.touched && !color.valid">
+                El color es incorrecto
+            </span>
+        </p>
+        <input type="submit" value="Guardar" [disabled]="!formCoche.form.valid">
+    </form>
+</div>
+
+<div class="listado">
+    <h4>Listado de coches</h4>
+    <ul>
+        <li *ngFor="let coche of coches">
+            {{coche.nombre}} - {{coche.caballaje}} - {{coche.color}}
+        </li>
+    </ul>
+</div>
+
+<div class="listado">
+    <h3>Listado de articulos</h3>
+    <ul *ngIf="articulos">
+        <li *ngFor="let articulo of articulos">
+            {{articulo.id}} - {{articulo.title}} - {{articulo.body}}
+        </li>
+    </ul>
+    <span *ngIf="!articulos">Cargando Listado...</span>
+</div>

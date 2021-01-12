@@ -1,0 +1,16 @@
+<h2>{{title}}</h2>
+
+<componente-hijo 
+    [propiedad1]="'Hey!'"
+    [propiedad2]=" 'Welcome'"
+    [texto1]="dato_externo"
+    [texto2]="identity"
+    (desde_el_hijo)="recibirDatos($event)"
+>
+</componente-hijo>
+
+<hr/>
+
+<div *ngIf="datos_del_hijo">
+    <h2>{{datos_del_hijo.nombre}} - {{datos_del_hijo.puesto}} - {{datos_del_hijo.twitter}}</h2>
+</div>

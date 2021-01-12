@@ -1,0 +1,197 @@
+<div [@fadeIn]>
+    <h2>{{title}}</h2>
+    <hr>
+    <br/><br/>
+    <strong>Empleado estrella</strong>
+    <ul>
+        <li>{{ empleado.nombre }}</li>
+        <li>{{ empleado.edad }}</li>
+        <li>{{ empleado.cargo }}</li>
+        <li>{{ empleado.contratado }}</li>
+    </ul>
+
+    <hr>
+    <ul>
+        <li>{{ trabajadores[0].nombre }}</li>
+        <li>{{ trabajadores[0].edad }}</li>
+        <li>{{ trabajadores[0].cargo }}</li>
+        <li>{{ trabajadores[0].contratado }}</li>
+    </ul>
+
+    <!-- Directivas -->
+    <hr>
+    <ul *ngFor="let trabajador of trabajadores">
+        <li>{{ trabajador.nombre }}</li>
+        <li>{{ trabajador.edad }}</li>
+        <li>{{ trabajador.cargo }}</li>
+        <li>{{ trabajador.contratado }}</li>
+    </ul>
+
+    <hr>
+    <br/><br/>
+
+    <strong>Empleado estrella</strong>
+    <br/><br/>
+    <div *ngIf="trabajador_externo == true">
+        <button (click)="cambiarExterno(false)">Mostrar trabajador</button>
+        <ul>
+            <li>{{ trabajadores[0].nombre }}</li>
+            <li>{{ trabajadores[0].edad }}</li>
+            <li>{{ trabajadores[0].cargo }}</li>
+            <li *ngIf="trabajadores[0].contratado == true">Está contratado</li>
+            <li *ngIf="trabajadores[0].contratado == false">No está contratado</li>
+        </ul>
+    </div>
+    <div *ngIf="trabajador_externo == false">
+        <button (click)="cambiarExterno(true)">Mostrar empleado</button>
+        <ul>
+            <li>{{ empleado.nombre }}</li>
+            <li>{{ empleado.edad }}</li>
+            <li>{{ empleado.cargo }}</li>
+            <li *ngIf="empleado.contratado == true">Está contratado</li>
+            <li *ngIf="empleado.contratado == false">No está contratado</li>
+        </ul>
+    </div>
+
+    <hr>
+    <br/><br/>
+
+    <strong>Lista de empleados</strong>
+    <ul>
+        <li *ngFor="let empleado of trabajadores; let i=index">
+            <strong>Empleado {{i+1}}:</strong>
+            <ul>
+                <li>{{ empleado.nombre }}</li>
+                <li>{{ empleado.edad }}</li>
+                <li>{{ empleado.cargo }}</li>
+                <li *ngIf="empleado.contratado == true">Está contratado</li>
+                <li *ngIf="empleado.contratado == false">No está contratado</li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- Two way data-binding, 
+        Eventos 
+        NgClass (en atributo y como directiva)
+    -->
+    <hr/>
+    <h1>Selector de Colores</h1>
+    <input type="text" [(ngModel)] = "color_seleccionado"/>
+    <button (click) = "logColorSeleccionado()">Mostrar en log</button>
+    <pre>
+        <strong>Color elegido:</strong>
+        {{color_seleccionado}}
+    </pre>
+    <div [ngStyle]="{
+        'background': color_seleccionado, 
+        'width': '200px',
+        'height': '200px',
+        'float': 'right',
+        'margin-right': '55%'
+        }"></div>
+    <div style="clear: both;"></div>
+
+    <hr>
+    <br/><br/>
+
+    <h2>Selector de Colores (NgClass en atributo)</h2>
+    <input type="text" [(ngModel)] = "color_seleccionado"/>
+    <button (click) = "logColorSeleccionado()">Mostrar en log</button>
+    <pre [style.border]="color_seleccionado == 'red' ? '5px solid black' : '1px solid green'"
+        [class.bordeAzul] = "color_seleccionado == 'blue'"    
+    >
+        <strong>Color elegido:</strong>
+        {{color_seleccionado}}
+    </pre>
+    <div [ngStyle]="{
+        'background': color_seleccionado, 
+        'width': '200px',
+        'height': '200px',
+        'float': 'right',
+        'margin-right': '55%'
+        }"></div>
+    <div style="clear: both;"></div>
+
+    <hr>
+    <br/><br/>
+
+    <h2>Selector de Colores (NgClass como directiva)</h2>
+
+    <h3>ngClass ya establecida (sin condicioes)</h3>
+    <pre [style.border]="color_seleccionado == 'red' ? '5px solid black' : '1px solid green'"
+        [ngClass] = "['fondoAzul', 'letraGrande']" 
+    >
+        <strong>Color elegido:</strong>
+        {{color_seleccionado}}
+    </pre>
+
+    <h3>ngClass modificada (con condicioes)</h3>
+    <br/>
+    Escribre un color
+    <input type="text" [(ngModel)] = "color_seleccionado"/>
+    <button (click) = "logColorSeleccionado()">Mostrar en log</button>
+    <br/>
+    (Con red, blue o green verás otros cambios)
+    <pre [style.border]="color_seleccionado == 'red' ? '5px solid black' : '1px solid green'"
+        [ngClass] = "{
+            fondoAzul: color_seleccionado == 'blue',
+            fondoVerde: color_seleccionado == 'green',
+            letraGrande: 1 == 1
+        }"    
+    >
+        <strong>Color elegido:</strong>
+        {{color_seleccionado}}
+    </pre>
+    <div [ngStyle]="{
+        'background': color_seleccionado, 
+        'width': '200px',
+        'height': '200px',
+        'float': 'right',
+        'margin-right': '55%'
+        }"></div>
+    <div style="clear: both;"></div>
+
+    <hr>
+    <br/><br/>
+    <h2>Colores switch</h2>
+    <ul [ngSwitch]="color_seleccionado">
+        <li *ngSwitchCase="'red'">
+                Es de color ROJO
+        </li>
+        <li *ngSwitchCase="'green'">
+            Es de color VERDE
+        </li>
+        <li *ngSwitchCase="'blue'">
+                Es de color AZUL
+        </li>
+    </ul>
+
+    <hr>
+    <br/><br/>
+
+    <h2>Colores switch</h2>
+    <button (click)="cambiarColor('green')">Cambiar Color</button>
+    <ul [ngSwitch]="color_seleccionado">
+        <li *ngSwitchCase="'red'" [ngStyle]="{
+            'background': color_seleccionado, 
+            'color': 'white', 
+            'padding': '20px'
+            }">
+                Es de color ROJO
+        </li>
+        <li *ngSwitchCase="'green'" [ngStyle]="{
+            'background': color_seleccionado, 
+            'color': 'white', 
+            'padding': '20px'
+            }">
+                Es de color VERDE
+        </li>
+        <li *ngSwitchCase="'blue'" [ngStyle]="{
+            'background': color_seleccionado, 
+            'color': 'white', 
+            'padding': '20px'
+            }">
+                Es de color AZUL
+        </li>
+    </ul>
+</div>    

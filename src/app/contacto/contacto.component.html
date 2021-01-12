@@ -1,0 +1,27 @@
+<h2>{{titulo}}</h2> 
+
+<div *ngIf="parametro">
+    Parametro de la url: {{parametro}}
+</div>
+
+<div *ngIf="!parametro">
+    <button (click)="redirigir()">Ir a la página con parámetro</button>
+    <br/>
+    <button (click)="redirigirHome()">Ir a home</button>    
+</div>
+
+<!-- USO DE LOCALSTORAGE -->
+<!-- ** Se creo el modelo-email de esta parte ** -->
+<br/>
+<hr/>
+<br/>
+<h2>Ingresa un email para guardarlo en LocalStorage</h2>
+<input type="text" [(ngModel)] = "emailContacto">
+<button (click)="guardarEmail()">Guardar email (LocalStorage)</button>
+
+
+<br/>
+<hr/>
+<br/>
+
+<main-email></main-email>

@@ -1,0 +1,50 @@
+<h3>
+  {{ title }}
+</h3>
+
+<hr>
+<nav>
+  <a [routerLink]="['/home']" [routerLinkActive]="['activado']">Home</a> 
+  /
+  <a [routerLink]="['/fruta']" [routerLinkActive]="['activado']">Fruta</a>
+  /
+  <a [routerLink]="['/empleado']" [routerLinkActive]="['activado']">Empleado</a>
+  /
+  <a [routerLink]="['/contacto']" [routerLinkActive]="['activado']">Contacto</a>
+  /
+  <a [routerLink]="['/coches']" [routerLinkActive]="['activado']">Coches</a>
+  /
+  <a [routerLink]="['/plantillas']" [routerLinkActive]="['activado']">Plantillas</a>
+  /
+  <a [routerLink]="['/padre-component']" [routerLinkActive]="['activado']">Padre-Hijo</a>
+  /
+  <a [routerLink]="['/jquery-component']" [routerLinkActive]="['activado']">jQuery</a>
+  /
+  <a [routerLink]="['/animations-component']" [routerLinkActive]="['activado']">Animations</a> 
+  /
+  <!-- LocalStorage -->
+  
+  <div *ngIf="emailContacto" style="display: inline;">
+    <span>Email Contacto: {{emailContacto}}</span>
+    <button (click)="borrarEmail()">Eliminar email</button>
+  </div>
+
+</nav>
+<hr>
+
+<br/>
+<hr/>
+
+<router-outlet></router-outlet>
+
+<!--
+<hr/>
+<fruta></fruta>
+
+<hr/>
+<persona></persona>
+
+<hr/>
+<empleado></empleado>
+-->
+

@@ -1,0 +1,20 @@
+SERVICIOS
+
+Los servicios son clases con un objetivo claro que nos facilitan la reutilización de código y son
+un tipo de componente o una parte de la arquitectura de una aplicación que nos va a permitir separar
+un poco de lógica del componente y llevarnosla al servicio (sobre todo en temas de trabajo con API's con HTTP, etc),
+y que posteriormente mediante la inyección de dependencias podemos utilizar en otros componentes principales 
+
+*Qué es un servicio y cómos se utiliza?
+
+
+-Se recomienda crear una carpeta donde se ingresen todos los servicios 
+-Otra manera de trabajarlo sería teniendo un servicio por componente
+ (por ejemplo un servicio home dentro de la carpeta del componente home)
+
+ 1) Se importa Injectable
+ 2) Se crean las propiedades y métodos necesarios
+ 3) Para utilizarla dentro del componente que queramos
+    a) Se importa
+    b) Se agrega en el decorador en providers: [NombreServicio]
+    c) Ya se puede instanciar o usar una variable del tipo de ese servicio (incluyendo los métodos dentro del servicio)
